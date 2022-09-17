@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  application:
+    container_name: application
+    build: ./app
+    ports:
+      - 3000:3000
+    depends_on:
+      - redis_database
+    environment:
+      REDIS_HOST: redis_database
+      REDIS_PORT: 6379
+  redis_database:
+    container_name: redis
+    image: redis:alpine3.16
+    ports:
+      - 6379:6379
